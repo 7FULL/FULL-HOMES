@@ -1,0 +1,4 @@
+name: HomesPlugin
+version: '${project.version}'
+main: com.plugin.homes.HomesPlugin
+api-version: '1.19'
