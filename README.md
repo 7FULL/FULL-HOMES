@@ -25,4 +25,4 @@ How to change the configuration(I will make a graphics menu in the future):
 4: Open config.yml and edit whatever you like
 5: Restart your server and enjoy
 
-https://media.forgecdn.net/attachments/706/536/howtochangeconfiguration.png
+(https://media.forgecdn.net/attachments/706/536/howtochangeconfiguration.png)
