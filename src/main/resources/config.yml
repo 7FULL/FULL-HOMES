@@ -1,7 +1,7 @@
 ########################PLUGIN CONFIGURATION########################
 
 max_homes: 3 #Maximum amount of homes a player can have (Default: 3) (-1 = unlimited)
-language: spanish #Language of the plugin
+language: english #Language of the plugin
 #Available languages:
 #- english
 #- spanish
@@ -9,18 +9,40 @@ language: spanish #Language of the plugin
 allow_welcome_message: false #Allow welcome message
 allow_enabled_message: true #Allow plugin enabled message
 allow_default_welcome_message: true #Allow default welcome message
+allow_teleport_message: true #Allow message when a player teleports to a home
+allow_teleport_sound: true #Allow sound when a player teleports to a home
+allow_home_set_sound: true #Allow sound when a player sets a home
+allow_deleted_sound: true #Allow sound when a player deletes a home
 
 english:
     welcome_message: "Welcome to the server!" #Welcome message
     enabled_message: "The plugin has been enabled!" #Plugin enabled message
     max_homes_message: "You have reached the maximum amount of homes!" #Max homes message
     home_set_message: "Home %name% created!" #Home set message
+    home_already_exists_message: "Home %name% already exists!" #Home already exists message
+    set_home_use_message: "Use: /sethome <name>" #Home use message
+    zero_homes_message: "You don't have any homes!" #Zero homes message
+    many_homes_message: "You have %number% homes!" #Many homes message
+    home_use_message: "Use: /home <name>" #Home use message
+    home_not_exists_message: "Home %name% doesn't exists!" #Home not exists message
+    delete_home_message: "Home %name% deleted!" #Delete home message
+    delete_home_use_message: "Use: /delhome <name>" #Delete home use message
+    teleport_message: "Teleported to %name% home!" #Teleport message
 
 spanish:
     welcome_message: "Bienvenido al servidor!" #Welcome message
     enabled_message: "El plugin ha sido activado!" #Plugin enabled message
     max_homes_message: "Has alcanzado el numero máximo de homes!" #Max homes message
     home_set_message: "Home %name% creada!" #Home set message
+    home_already_exists_message: "Home %name% ya existe!" #Home already exists message
+    set_home_use_message: "Uso: /sethome <name>" #Home use message
+    zero_homes_message: "No tienes ningun home!" #Zero homes message
+    many_homes_message: "Tienes %number% homes!" #Many homes message
+    home_use_message: "Uso: /home <name>" #Home use message
+    home_not_exists_message: "Home %name% no existe!" #Home not exists message
+    delete_home_message: "Home %name% eliminada!" #Delete home message
+    delete_home_use_message: "Uso: /delhome <name>" #Delete home use message
+    teleport_message: "Teletransportado a la home %name%!" #Teleport message
 
 #####################HERE THE HOMES ARE SAVED#######################
 

@@ -24,16 +24,20 @@ public class HomeList implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        String noHomes = plugin.getZeroHomesMessage();
+        String manyHomes = plugin.getManyHomesMessage();
+
         Player player = (Player) sender;
 
         try {
             Set<String> homes = plugin.getConfig().getConfigurationSection(player.getName()).getKeys(false);
 
             if (homes.size() == 0){
-                player.sendMessage(ChatColor.RED + "No tienes homes");
+                player.sendMessage(ChatColor.RED + noHomes);
             }else{
                 player.sendMessage(" ");
-                player.sendMessage( ChatColor.BOLD + " Tienes " + homes.size() + " homes");
+                manyHomes = manyHomes.replace("%number%", String.valueOf(homes.size()));
+                player.sendMessage( ChatColor.BOLD + manyHomes);
 
                 player.sendMessage(ChatColor.YELLOW + "--------------------");
                 for (String home : homes){
@@ -43,7 +47,7 @@ public class HomeList implements CommandExecutor {
                 player.sendMessage(ChatColor.YELLOW + "--------------------");
             }
         }catch (NullPointerException e){
-            player.sendMessage("No tienes homes");
+            player.sendMessage(ChatColor.RED + noHomes);
             return true;
         }
         return true;

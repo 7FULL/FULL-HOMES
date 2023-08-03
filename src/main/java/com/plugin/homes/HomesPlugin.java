@@ -6,6 +6,7 @@ import com.plugin.homes.commands.HomeList;
 import com.plugin.homes.commands.SetHome;
 import com.plugin.homes.enumerators.Language;
 import com.plugin.homes.listeners.PlayerListener;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class HomesPlugin extends JavaPlugin {
@@ -17,6 +18,10 @@ public final class HomesPlugin extends JavaPlugin {
     private boolean allowEnabledMessage; //Boolean that will determine if the plugin will show a message when it is enabled
     private boolean allowWelcomeMessage; //Boolean that will determine if the plugin will show a message when a player joins the server
     private boolean allowDefaultWelcomeMessage; //Boolean that will determine if the plugin will show the default message when a player joins the server
+    private boolean allowTeleportMessage; //Boolean that will determine if the plugin will show a message when a player teleports to a home
+    private boolean allowTeleportSound; //Boolean that will determine if the plugin will play a sound when a player teleports to a home
+    private boolean allowHomeSetSound; //Boolean that will determine if the plugin will play a sound when a player sets a home
+    private boolean allowDeletedSound; //Boolean that will determine if the plugin will play a sound when a player deletes a home
 
 
 
@@ -24,6 +29,15 @@ public final class HomesPlugin extends JavaPlugin {
     private String welcomeMessage; //Mesagge that will pop up in the console when a player joins the server
     private String maxHomesMessage; //Message that will pop up when a player tries to set a home and he has reached the maximum number of homes
     private String homeSetMessage; //Message that will pop up when a player sets a home
+    private String homeAlreadyExistsMessage; //Message that will pop up when a player tries to set a home and he already has a home with that name
+    private String setHomeUseMessage; //Message that will pop up when a player uses the command /sethome incorrectly
+    private String zeroHomesMessage; //Message that will pop up when a player tries to use the command /homeList and he has no homes
+    private String manyHomesMessage; //Message that will pop up when a player tries to use the command /homeList and he has at least 1 home
+    private String homeUseMessage; //Message that will pop up when a player uses the command /home incorrectly
+    private String homeDoesNotExistMessage; //Message that will pop up when a player tries to use the command /home and he has no home with that name
+    private String delHomeUseMessage; //Message that will pop up when a player uses the command /delhome incorrectly
+    private String homeDeletedMessage; //Message that will pop up when a player deletes a home
+    private String teleportMessage; //Message that will pop up when a player teleports to a home
 
 
     private int maxHomes; //Maximum number of homes a player can have
@@ -52,15 +66,29 @@ public final class HomesPlugin extends JavaPlugin {
         }
 
         //Get the messages from the config based on the language
+        ConfigurationSection section = getConfig().getConfigurationSection(language.getLanguage());
 
-        welcomeMessage = getConfig().getConfigurationSection(language.getLanguage()).getString("welcome_message");
-        enabledMessage = getConfig().getConfigurationSection(language.getLanguage()).getString("enabled_message");
-        maxHomesMessage = getConfig().getConfigurationSection(language.getLanguage()).getString("max_homes_message");
-        homeSetMessage = getConfig().getConfigurationSection(language.getLanguage()).getString("home_set_message");
+        welcomeMessage = section.getString("welcome_message");
+        enabledMessage = section.getString("enabled_message");
+        maxHomesMessage = section.getString("max_homes_message");
+        homeSetMessage = section.getString("home_set_message");
+        homeAlreadyExistsMessage = section.getString("home_already_exists_message");
+        setHomeUseMessage = section.getString("set_home_use_message");
+        zeroHomesMessage = section.getString("zero_homes_message");
+        manyHomesMessage = section.getString("many_homes_message");
+        homeUseMessage = section.getString("home_use_message");
+        homeDoesNotExistMessage = section.getString("home_not_exists_message");
+        teleportMessage = section.getString("teleport_message");
+        delHomeUseMessage = section.getString("delete_home_use_message");
+        homeDeletedMessage = section.getString("delete_home_message");
 
         allowEnabledMessage = getConfig().getBoolean("allow_enabled_message");
         allowWelcomeMessage = getConfig().getBoolean("allow_welcome_message");
         allowDefaultWelcomeMessage = getConfig().getBoolean("allow_default_welcome_message");
+        allowTeleportMessage = getConfig().getBoolean("allow_teleport_message");
+        allowTeleportSound = getConfig().getBoolean("allow_teleport_sound");
+        allowHomeSetSound = getConfig().getBoolean("allow_home_set_sound");
+        allowDeletedSound = getConfig().getBoolean("allow_deleted_sound");
 
         maxHomes = getConfig().getInt("max_homes");
 
@@ -110,6 +138,58 @@ public final class HomesPlugin extends JavaPlugin {
 
     public String getHomeSetMessage() {
         return homeSetMessage;
+    }
+
+    public String getHomeAlreadyExistsMessage() {
+        return homeAlreadyExistsMessage;
+    }
+
+    public String getSetHomeUseMessage() {
+        return setHomeUseMessage;
+    }
+
+    public String getZeroHomesMessage() {
+        return zeroHomesMessage;
+    }
+
+    public String getManyHomesMessage() {
+        return manyHomesMessage;
+    }
+
+    public String getHomeUseMessage() {
+        return homeUseMessage;
+    }
+
+    public String getHomeDoesNotExistMessage() {
+        return homeDoesNotExistMessage;
+    }
+
+    public String getDelHomeUseMessage() {
+        return delHomeUseMessage;
+    }
+
+    public String getHomeDeletedMessage() {
+        return homeDeletedMessage;
+    }
+
+    public boolean isAllowTeleportMessage() {
+        return allowTeleportMessage;
+    }
+
+    public String getTeleportMessage() {
+        return teleportMessage;
+    }
+
+    public boolean isAllowTeleportSound() {
+        return allowTeleportSound;
+    }
+
+    public boolean isAllowHomeSetSound() {
+        return allowHomeSetSound;
+    }
+
+    public boolean isAllowDeletedSound() {
+        return allowDeletedSound;
     }
 
     //endregion

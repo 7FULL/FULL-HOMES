@@ -2,6 +2,7 @@ package com.plugin.homes.commands;
 
 import com.plugin.homes.HomesPlugin;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,14 +23,20 @@ public class DelHome implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        String homeDoesNotExistMessage = plugin.getHomeDoesNotExistMessage();
+        String delHomeUseMessage = plugin.getDelHomeUseMessage();
+        String homeDeletedMessage = plugin.getHomeDeletedMessage();
+        Boolean allowDelHomeSound = plugin.isAllowDeletedSound();
+
         if (args.length == 0){
-            sender.sendMessage("Uso: /delhome <nombre>");
+            sender.sendMessage(ChatColor.RED + delHomeUseMessage);
         }else{
             Player player = (Player) sender;
 
-            //Comprobamos si existe el home
+            //Check if home exists
             if (plugin.getConfig().get(player.getName() + "." + args[0]) == null){
-                player.sendMessage(ChatColor.RED +"Home " + args[0] + " no existe");
+                homeDoesNotExistMessage = homeDoesNotExistMessage.replace("%name%", args[0]);
+                player.sendMessage(ChatColor.RED + homeDoesNotExistMessage);
                 return true;
             }
 
@@ -37,7 +44,12 @@ public class DelHome implements CommandExecutor {
 
             plugin.saveConfig();
 
-            player.sendMessage("Home " + args[0] + " eliminado");
+            homeDeletedMessage = homeDeletedMessage.replace("%name%", args[0]);
+            player.sendMessage(ChatColor.GREEN + homeDeletedMessage);
+
+            if (allowDelHomeSound){
+                player.playSound(player, Sound.ENTITY_PLAYER_DEATH, 1, 1);
+            }
         }
         return true;
     }
