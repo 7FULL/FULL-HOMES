@@ -2,3 +2,36 @@ name: HomesPlugin
 version: '${project.version}'
 main: com.plugin.homes.HomesPlugin
 api-version: '1.19'
+author: 7FULL
+description: HomesPlugin
+
+commands:
+  setHome:
+    description: Set home
+    usage: /<command> [nombre]
+    aliases:
+      - sethome
+      - sh
+
+  home:
+    description: Teleport to home
+    usage: /<command> [nombre]
+    aliases:
+      - h
+
+  delHome:
+    description: Delete home
+    usage: /<command> [nombre]
+    aliases:
+      - delhome
+      - deletehome
+      - deleteHome
+      - dh
+
+  homeList:
+    description: List of homes
+    usage: /<command>
+    aliases:
+      - homelist
+      - hl
+      - homes

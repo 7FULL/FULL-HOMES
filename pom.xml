@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.plugin</groupId>
-    <artifactId>Homes</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>FULLHOMES</artifactId>
+    <version>1.19.4</version>
     <packaging>jar</packaging>
 
     <name>HomesPlugin</name>
@@ -18,15 +18,18 @@
 
     <build>
         <plugins>
+            <!-- Configuración del plugin maven-compiler-plugin para compilar el código fuente -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <source>16</source>
+                    <target>16</target>
                 </configuration>
             </plugin>
+
+            <!-- Configuración del plugin maven-shade-plugin para crear un JAR sombreado (shaded JAR) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -39,6 +42,35 @@
                         </goals>
                         <configuration>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Configuración del plugin maven-resources-plugin para copiar el JAR generado -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>copy-plugin</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Aquí se define la carpeta de destino, reemplaza la ruta a tu carpeta de plugins -->
+                            <outputDirectory>C:/Users/phgfu/staff/MCServers/1.19.4/plugins</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <!-- El archivo JAR generado se copiará a la carpeta de destino con el mismo nombre -->
+                                    <directory>${project.build.directory}</directory>
+                                    <includes>
+                                        <include>FULLHOMES-1.19.4.jar</include>
+                                    </includes>
+                                </resource>
+                            </resources>
                         </configuration>
                     </execution>
                 </executions>
