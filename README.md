@@ -18,6 +18,7 @@ Characteristics:
 - Allow or not set home sound
 - Allow or not welcome message
 - Full message customization in the config
+- Spawn teleport
 
 How to change the configuration(I will make a graphics menu in the future):
 
