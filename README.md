@@ -1,7 +1,7 @@
 # FULLHOMES
 Home plugin for minecraft.
 
-[Updates](updates.md)
+## [Updates](updates.md)
 
 Characteristics:
 
