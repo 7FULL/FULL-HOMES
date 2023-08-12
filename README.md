@@ -1,6 +1,8 @@
 # FULLHOMES
 Home plugin for minecraft.
 
+[Updates](updates.md)
+
 Characteristics:
 
 - Sethome
