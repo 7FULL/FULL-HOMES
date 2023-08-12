@@ -1,7 +1,7 @@
 # FULLHOMES
 Home plugin for minecraft.
 
-## [Updates](updates.md)
+## Whant to see the progress -> [Updates](updates.md)
 
 Characteristics:
 
