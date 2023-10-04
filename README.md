@@ -1,6 +1,8 @@
 # FULLHOMES
 Home plugin for minecraft.
 
+Download: https://legacy.curseforge.com/minecraft/bukkit-plugins/full-homes
+
 ## Whant to see the progress -> [Updates](updates.md)
 
 Characteristics:
